@@ -42,7 +42,7 @@ class Plugin {
 	public static function get_instance() {
 
 		if ( ! self::$instance ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 
 		return self::$instance;
@@ -53,27 +53,27 @@ class Plugin {
 	 */
 	public function __construct() {
 		if ( $this->is_enabled() ) {
-			add_action( 'plugins_loaded', [ $this, 'i18n' ], 3 );
-			add_action( 'wp_ajax_wsb_add_to_cart_ajax', [ $this, 'add_to_cart_ajax' ] );
-			add_action( 'wp_ajax_nopriv_wsb_add_to_cart_ajax', [ $this, 'add_to_cart_ajax' ] );
-			add_filter( 'body_class', [ $this, 'body_class' ] );
+			add_action( 'plugins_loaded', array( $this, 'i18n' ), 3 );
+			add_action( 'wp_ajax_wsb_add_to_cart_ajax', array( $this, 'add_to_cart_ajax' ) );
+			add_action( 'wp_ajax_nopriv_wsb_add_to_cart_ajax', array( $this, 'add_to_cart_ajax' ) );
+			add_filter( 'body_class', array( $this, 'body_class' ) );
 
 			if ( ! $this->is_redirect() ) {
-				add_action( 'wp_footer', [ $this, 'add_checkout_template' ] );
+				add_action( 'wp_footer', array( $this, 'add_checkout_template' ) );
 			}
 
 			$this->handle_button_positions();
 
-			add_action( 'wsb_before_add_to_cart', [ $this, 'reset_cart' ], 10 );
-			add_filter( 'woocommerce_is_checkout', [ $this, 'woocommerce_is_checkout' ] );
-			add_shortcode( 'buy_now_woo_button', [ $this, 'add_shortcode_button' ] );
+			add_action( 'wsb_before_add_to_cart', array( $this, 'reset_cart' ), 10 );
+			add_filter( 'woocommerce_is_checkout', array( $this, 'woocommerce_is_checkout' ) );
+			add_shortcode( 'buy_now_woo_button', array( $this, 'add_shortcode_button' ) );
 
 			$this->handle_customize();
 
-			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ], 20 );
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 20 );
 		}
 
-		add_filter( 'woocommerce_get_settings_pages', [ $this, 'settings_page' ] );
+		add_filter( 'woocommerce_get_settings_pages', array( $this, 'settings_page' ) );
 	}
 
 	/**
@@ -84,7 +84,7 @@ class Plugin {
 	 * @return array integrations
 	 */
 	public function settings_page( $integrations ) {
-		$integrations[] = new Settings;
+		$integrations[] = new Settings();
 
 		return $integrations;
 	}
@@ -94,15 +94,15 @@ class Plugin {
 	 */
 	public function handle_button_positions() {
 		if ( $this->is_before_button() ) {
-			add_action( 'woocommerce_before_add_to_cart_button', [ $this, 'add_simple_buy_button' ] );
+			add_action( 'woocommerce_before_add_to_cart_button', array( $this, 'add_simple_buy_button' ) );
 		} elseif ( $this->is_after_button() ) {
-			add_action( 'woocommerce_after_add_to_cart_button', [ $this, 'add_simple_buy_button' ], 5 );
+			add_action( 'woocommerce_after_add_to_cart_button', array( $this, 'add_simple_buy_button' ), 5 );
 		} elseif ( $this->is_before_quantity_input() ) {
-			add_action( 'woocommerce_before_add_to_cart_quantity', [ $this, 'add_simple_buy_button' ] );
+			add_action( 'woocommerce_before_add_to_cart_quantity', array( $this, 'add_simple_buy_button' ) );
 		} elseif ( $this->is_after_quantity_input() ) {
-			add_action( 'woocommerce_after_add_to_cart_quantity', [ $this, 'add_simple_buy_button' ], 5 );
+			add_action( 'woocommerce_after_add_to_cart_quantity', array( $this, 'add_simple_buy_button' ), 5 );
 		} elseif ( $this->is_replace_button() ) {
-			add_action( 'woocommerce_after_add_to_cart_button', [ $this, 'add_simple_buy_button' ], 5 );
+			add_action( 'woocommerce_after_add_to_cart_button', array( $this, 'add_simple_buy_button' ), 5 );
 		}
 	}
 
@@ -117,16 +117,20 @@ class Plugin {
 	 * Enqueue scripts.
 	 */
 	public function enqueue_scripts() {
-		wp_register_style( 'buy-now-woo', BUY_NOW_WOO_PLUGIN_URL . 'assets/css/buy-now-woo.css', [], BUY_NOW_WOO_VERSION );
-		wp_register_script( 'buy-now-woo', BUY_NOW_WOO_PLUGIN_URL . 'assets/js/buy-now-woo.js', [ 'jquery' ], BUY_NOW_WOO_VERSION, true );
+		wp_register_style( 'buy-now-woo', BUY_NOW_WOO_PLUGIN_URL . 'assets/css/buy-now-woo.css', array(), BUY_NOW_WOO_VERSION );
+		wp_register_script( 'buy-now-woo', BUY_NOW_WOO_PLUGIN_URL . 'assets/js/buy-now-woo.js', array( 'jquery' ), BUY_NOW_WOO_VERSION, true );
 
 		if ( is_product() ) {
 			wp_enqueue_style( 'buy-now-woo' );
 			wp_enqueue_script( 'buy-now-woo' );
 
-			wp_localize_script( 'buy-now-woo', 'buy_now_woo', [
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-			] );
+			wp_localize_script(
+				'buy-now-woo',
+				'buy_now_woo',
+				array(
+					'ajax_url' => admin_url( 'admin-ajax.php' ),
+				)
+			);
 		}
 
 		/**
@@ -331,7 +335,7 @@ class Plugin {
 		$classes = implode( ' ', array_map( 'sanitize_html_class', $args['class'] ) );
 		$atts    = isset( $args['attributes'] ) ? $args['attributes'] : '';
 		?>
-		<button <?php print $type; ?> name="wsb-buy-now" value="<?php echo esc_attr( $product->get_id() ); ?>" class="<?php echo esc_attr( $classes ); ?>" <?php print $atts; // WPCS: xss ok. ?>><?php echo isset( $args['title'] ) ? esc_html( $args['title'] ) : ''; ?></button>
+		<button <?php echo esc_attr( $type ); ?>name="wsb-buy-now" value="<?php echo esc_attr( $product->get_id() ); ?>" class="<?php echo esc_attr( $classes ); ?>" <?php echo $atts; // WPCS: xss ok. ?>><?php echo isset( $args['title'] ) ? esc_html( $args['title'] ) : ''; ?></button>
 		<?php
 	}
 
@@ -382,9 +386,12 @@ class Plugin {
 		try {
 			$_REQUEST['add-to-cart'] = $product_id;
 
-			add_filter( 'pre_option_woocommerce_cart_redirect_after_add', function ( $option ) {
-				return 'no';
-			} );
+			add_filter(
+				'pre_option_woocommerce_cart_redirect_after_add',
+				function ( $option ) {
+					return 'no';
+				}
+			);
 
 			\WC_Form_Handler::add_to_cart_action();
 
@@ -393,18 +400,21 @@ class Plugin {
 			 *
 			 * @param array $results results.
 			 */
-			$results = apply_filters( 'wsb_checkout_template', [
-				'element'      => '.wsb-modal-content',
-				'redirect'     => $this->is_redirect(),
-				'checkout_url' => esc_url( wc_get_checkout_url() ),
-				'template'     => do_shortcode( '[woocommerce_checkout]' ),
-				'method'       => 'html',
-			] );
+			$results = apply_filters(
+				'wsb_checkout_template',
+				array(
+					'element'      => '.wsb-modal-content',
+					'redirect'     => $this->is_redirect(),
+					'checkout_url' => esc_url( wc_get_checkout_url() ),
+					'template'     => do_shortcode( '[woocommerce_checkout]' ),
+					'method'       => 'html',
+				)
+			);
 
 			return wp_send_json_success( $results, 200 );
 
 		} catch ( \Exception $e ) {
-			return wp_send_json_error( [ 'message' => $e->getMessage() ], 400 );
+			return wp_send_json_error( array( 'message' => $e->getMessage() ), 400 );
 		}
 	}
 
@@ -441,16 +451,24 @@ class Plugin {
 	 * @return array
 	 */
 	public function get_button_default_args() {
-		$btn_class = apply_filters( 'wsb_single_product_button_classes', [
-			'wsb-button',
-			'js-wsb-add-to-cart',
-		] );
+		$btn_class = apply_filters(
+			'wsb_single_product_button_classes',
+			array(
+				'wsb-button',
+				'js-wsb-add-to-cart',
+			)
+		);
 
-		return apply_filters( 'wsb_buy_now_button_args', [
-			'type'       => 'submit',
-			'class'      => $btn_class,
-			'title'      => esc_html( $this->get_button_title() ),
-			'attributes' => '',
-		], $this->get_redirect(), $this->get_position() );
+		return apply_filters(
+			'wsb_buy_now_button_args',
+			array(
+				'type'       => 'submit',
+				'class'      => $btn_class,
+				'title'      => esc_html( $this->get_button_title() ),
+				'attributes' => '',
+			),
+			$this->get_redirect(),
+			$this->get_position()
+		);
 	}
 }

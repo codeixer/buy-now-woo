@@ -10,7 +10,7 @@ class Size_Field {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_action( 'woocommerce_admin_field_wsb_size', [ $this, 'output' ] );
+		add_action( 'woocommerce_admin_field_wsb_size', array( $this, 'output' ) );
 	}
 
 	/**
@@ -64,10 +64,13 @@ class Size_Field {
 	 * @return array Nicely formatted array with number and unit values.
 	 */
 	public function parse_option( $raw_value ) {
-		$value = wp_parse_args( (array) $raw_value, [
-			'size' => '',
-			'unit' => 'px',
-		] );
+		$value = wp_parse_args(
+			(array) $raw_value,
+			array(
+				'size' => '',
+				'unit' => 'px',
+			)
+		);
 
 		$value['size'] = isset( $value['size'] ) ? $value['size'] : '';
 

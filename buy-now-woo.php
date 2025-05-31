@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:     Buy Now Button for WooCommerce
- * Plugin URI:      
+ * Plugin URI:
  * Description:     Buy your product only one step in the Product Detail page.
  * Author:          Codeixer
  * Author URI:      https://codeixer.com/

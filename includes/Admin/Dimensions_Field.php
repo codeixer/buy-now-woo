@@ -10,7 +10,7 @@ class Dimensions_Field {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_action( 'woocommerce_admin_field_wsb_dimensions', [ $this, 'output' ] );
+		add_action( 'woocommerce_admin_field_wsb_dimensions', array( $this, 'output' ) );
 	}
 
 	/**
@@ -108,13 +108,16 @@ class Dimensions_Field {
 	 * @return array Nicely formatted array with number and unit values.
 	 */
 	public function parse_option( $raw_value ) {
-		$value = wp_parse_args( (array) $raw_value, [
-			'top'    => '',
-			'right'  => '',
-			'bottom' => '',
-			'left'   => '',
-			'unit'   => 'px',
-		] );
+		$value = wp_parse_args(
+			(array) $raw_value,
+			array(
+				'top'    => '',
+				'right'  => '',
+				'bottom' => '',
+				'left'   => '',
+				'unit'   => 'px',
+			)
+		);
 
 		$value['top']    = isset( $value['top'] ) ? $value['top'] : '';
 		$value['right']  = isset( $value['right'] ) ? $value['right'] : '';

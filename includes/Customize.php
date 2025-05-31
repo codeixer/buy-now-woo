@@ -14,7 +14,7 @@ class Customize {
 			return;
 		}
 
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_inline_style' ], 25 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_inline_style' ), 25 );
 	}
 
 	/**
@@ -98,7 +98,7 @@ class Customize {
 	 * @return string
 	 */
 	public function get_color_atts() {
-		$colors = '';
+		$colors  = '';
 		$colors .= $this->get_color() ? "color: {$this->get_color()} !important;" : '';
 		$colors .= $this->get_background_color() ? "background-color: {$this->get_background_color()} !important;" : '';
 		$colors .= $this->get_border_color() ? "border-color: {$this->get_border_color()} !important;" : '';
@@ -112,7 +112,7 @@ class Customize {
 	 * @return string
 	 */
 	public function get_hover_color_atts() {
-		$hover_colors = '';
+		$hover_colors  = '';
 		$hover_colors .= $this->get_hover_color() ? "color: {$this->get_hover_color()} !important;" : '';
 		$hover_colors .= $this->get_hover_background_color() ? "background-color: {$this->get_hover_background_color()} !important;" : '';
 		$hover_colors .= $this->get_hover_border_color() ? "border-color: {$this->get_hover_border_color()} !important;" : '';
@@ -132,7 +132,7 @@ class Customize {
 
 		$padding_option = $this->parse_dimensions_option( $padding_option );
 
-		$padding = '';
+		$padding  = '';
 		$padding .= $this->isset_option( $padding_option['top'] ) ? "padding-top: {$padding_option['top']}{$padding_option['unit']} !important;" : '';
 		$padding .= $this->isset_option( $padding_option['right'] ) ? "padding-right: {$padding_option['right']}{$padding_option['unit']} !important;" : '';
 		$padding .= $this->isset_option( $padding_option['bottom'] ) ? "padding-bottom: {$padding_option['bottom']}{$padding_option['unit']} !important;" : '';
@@ -153,7 +153,7 @@ class Customize {
 
 		$margin_option = $this->parse_dimensions_option( $margin_option );
 
-		$margin = '';
+		$margin  = '';
 		$margin .= $this->isset_option( $margin_option['top'] ) ? "margin-top: {$margin_option['top']}{$margin_option['unit']} !important;" : '';
 		$margin .= $this->isset_option( $margin_option['right'] ) ? "margin-right: {$margin_option['right']}{$margin_option['unit']} !important;" : '';
 		$margin .= $this->isset_option( $margin_option['bottom'] ) ? "margin-bottom: {$margin_option['bottom']}{$margin_option['unit']} !important;" : '';
@@ -279,8 +279,10 @@ class Customize {
 	 * @return string
 	 */
 	public function get_additional_css() {
-		return apply_filters( 'wsb_additional_css',
-			trim( get_option( 'buy_now_woo_button_additional_css', '' ) ) );
+		return apply_filters(
+			'wsb_additional_css',
+			trim( get_option( 'buy_now_woo_button_additional_css', '' ) )
+		);
 	}
 
 	/**
@@ -291,13 +293,16 @@ class Customize {
 	 * @return array
 	 */
 	protected function parse_dimensions_option( $option ) {
-		return wp_parse_args( $option, [
-			'top'    => '',
-			'right'  => '',
-			'bottom' => '',
-			'left'   => '',
-			'unit'   => 'px',
-		] );
+		return wp_parse_args(
+			$option,
+			array(
+				'top'    => '',
+				'right'  => '',
+				'bottom' => '',
+				'left'   => '',
+				'unit'   => 'px',
+			)
+		);
 	}
 
 	/**
@@ -308,10 +313,13 @@ class Customize {
 	 * @return array
 	 */
 	protected function parse_sizes_option( $option ) {
-		return wp_parse_args( $option, [
-			'size' => '',
-			'unit' => 'px',
-		] );
+		return wp_parse_args(
+			$option,
+			array(
+				'size' => '',
+				'unit' => 'px',
+			)
+		);
 	}
 
 	/**
