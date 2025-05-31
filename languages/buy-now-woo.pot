@@ -1,57 +1,47 @@
-#, fuzzy
+# Copyright (C) 2025 Codeixer
+# This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-20 08:46+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Project-Id-Version: Buy Now Button for WooCommerce 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/buy-now-woo\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/"
+"POT-Creation-Date: 2025-05-31T03:33:38+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: buy-now-woo\n"
 
-#: buy-now-woo.php:33
-#, php-format
-msgid ""
-"WooCommerce Simple Buy Now requires at least WordPress version 4.6, you are "
-"running version %s. Please upgrade and try again!"
+#. Plugin Name of the plugin
+#: buy-now-woo.php
+msgid "Buy Now Button for WooCommerce"
 msgstr ""
 
+#. Description of the plugin
+#: buy-now-woo.php
+msgid "Buy your product only one step in the Product Detail page."
+msgstr ""
+
+#. Author of the plugin
+#: buy-now-woo.php
+msgid "Codeixer"
+msgstr ""
+
+#. Author URI of the plugin
+#: buy-now-woo.php
+msgid "https://codeixer.com/"
+msgstr ""
+
+#. translators: %s is the current PHP version
 #: buy-now-woo.php:52
-#, php-format
-msgid ""
-"WooCommerce Simple Buy Now requires at least PHP version 5.4 to work, you "
-"are running version %s. Please contact to your administrator to upgrade PHP "
-"version!"
+msgid "WooCommerce Simple Buy Now requires at least PHP version 7.4 to work, you are running version %s. Please contact your administrator to upgrade PHP version!"
 msgstr ""
 
-#. 1. URL link.
-#: buy-now-woo.php:77
-#, php-format
-msgid ""
-"WooCommerce Simple Buy Now requires WooCommerce to be installed and active. "
-"You can download %s here."
-msgstr ""
-
-#: includes/functions.php:9
-msgid "px"
-msgstr ""
-
-#: includes/functions.php:10
-msgid "em"
-msgstr ""
-
-#: includes/functions.php:11
-msgid "rem"
-msgstr ""
-
-#: includes/Plugin.php:218 includes/Admin/Settings.php:15
-#: includes/Admin/Settings.php:144
-msgid "Buy Now"
+#. translators: %s is the link to WooCommerce plugin.
+#: buy-now-woo.php:86
+msgid "Buy Now for WooCommerce requires WooCommerce to be installed and active. You can download %s here."
 msgstr ""
 
 #: includes/Admin/Dimensions_Field.php:93
@@ -70,175 +60,181 @@ msgstr ""
 msgid "Left"
 msgstr ""
 
+#: includes/Admin/Settings.php:15
+#: includes/Admin/Settings.php:156
+#: includes/Plugin.php:223
+msgid "Buy Now"
+msgstr ""
+
 #: includes/Admin/Settings.php:33
 msgid "General"
 msgstr ""
 
-#: includes/Admin/Settings.php:34 includes/Admin/Settings.php:191
+#: includes/Admin/Settings.php:34
+#: includes/Admin/Settings.php:205
 msgid "Customize"
 msgstr ""
 
-#: includes/Admin/Settings.php:47
+#: includes/Admin/Settings.php:49
 msgid "Before Add To Cart Button"
 msgstr ""
 
-#: includes/Admin/Settings.php:48
+#: includes/Admin/Settings.php:50
 msgid "After Add To Cart Button"
 msgstr ""
 
-#: includes/Admin/Settings.php:49
+#: includes/Admin/Settings.php:51
 msgid "Replace Add To Cart Button"
 msgstr ""
 
-#: includes/Admin/Settings.php:50
+#: includes/Admin/Settings.php:52
 msgid "Before Quantity Input"
 msgstr ""
 
-#: includes/Admin/Settings.php:51
+#: includes/Admin/Settings.php:53
 msgid "After Quantity Input"
 msgstr ""
 
-#: includes/Admin/Settings.php:52
+#: includes/Admin/Settings.php:54
 msgid "Use a Shortcode (for developer)"
 msgstr ""
 
-#: includes/Admin/Settings.php:63
+#: includes/Admin/Settings.php:68
 msgid "Use pop-up"
 msgstr ""
 
-#: includes/Admin/Settings.php:64
+#: includes/Admin/Settings.php:69
 msgid "Redirect to the checkout page (skip the cart page)"
 msgstr ""
 
-#: includes/Admin/Settings.php:105
+#: includes/Admin/Settings.php:113
 msgid "General Settings"
 msgstr ""
 
-#: includes/Admin/Settings.php:107
-msgid "The following options are used to configure WC Simple Buy Now actions."
+#: includes/Admin/Settings.php:115
+msgid "The following options are used to configure Buy Now button actions."
 msgstr ""
 
-#: includes/Admin/Settings.php:113
-msgid "Enable Simple Buy Now"
-msgstr ""
-
-#: includes/Admin/Settings.php:120
-msgid "Redirect"
-msgstr ""
-
-#: includes/Admin/Settings.php:121
-msgid "Use pop-up or redirect to the checkout page"
-msgstr ""
-
-#: includes/Admin/Settings.php:129
-msgid "Simple Buy Now Button Position"
+#: includes/Admin/Settings.php:123
+msgid "Enable Buy Now button"
 msgstr ""
 
 #: includes/Admin/Settings.php:130
-msgid ""
-"Where the button need to be added in single page .. before / after / replace"
+msgid "Redirect"
 msgstr ""
 
-#: includes/Admin/Settings.php:140 includes/Admin/Settings.php:141
-msgid "Simple Buy Button Title"
+#: includes/Admin/Settings.php:131
+msgid "Use pop-up or redirect to the checkout page"
 msgstr ""
 
-#: includes/Admin/Settings.php:148
+#: includes/Admin/Settings.php:139
+msgid "Button Position"
+msgstr ""
+
+#: includes/Admin/Settings.php:140
+msgid "Where the button need to be added in single page .. before / after / replace"
+msgstr ""
+
+#: includes/Admin/Settings.php:152
+#: includes/Admin/Settings.php:153
+msgid "Button Title"
+msgstr ""
+
+#: includes/Admin/Settings.php:160
 msgid "Reset Cart before Buy Now"
 msgstr ""
 
-#: includes/Admin/Settings.php:154
+#: includes/Admin/Settings.php:166
 msgid "Remove Quantity input"
 msgstr ""
 
-#: includes/Admin/Settings.php:176
+#: includes/Admin/Settings.php:188
 msgid "Customize Settings"
 msgstr ""
 
-#: includes/Admin/Settings.php:178
-msgid "The following options are used to configure WC Simple Buy Now style."
+#: includes/Admin/Settings.php:190
+msgid "The following options are used to configure Buy Now button style."
 msgstr ""
 
-#: includes/Admin/Settings.php:184
+#: includes/Admin/Settings.php:198
 msgid "Button style"
 msgstr ""
 
-#: includes/Admin/Settings.php:185
+#: includes/Admin/Settings.php:199
 msgid "Use theme style or customize"
 msgstr ""
 
-#: includes/Admin/Settings.php:190
+#: includes/Admin/Settings.php:204
 msgid "Theme style (default)"
 msgstr ""
 
-#: includes/Admin/Settings.php:202
+#: includes/Admin/Settings.php:216
 msgid "Normal colors"
 msgstr ""
 
-#: includes/Admin/Settings.php:208 includes/Admin/Settings.php:247
+#: includes/Admin/Settings.php:222
+#: includes/Admin/Settings.php:261
 msgid "Text color"
 msgstr ""
 
-#: includes/Admin/Settings.php:217 includes/Admin/Settings.php:256
+#: includes/Admin/Settings.php:231
+#: includes/Admin/Settings.php:270
 msgid "Background color"
 msgstr ""
 
-#: includes/Admin/Settings.php:226 includes/Admin/Settings.php:265
+#: includes/Admin/Settings.php:240
+#: includes/Admin/Settings.php:279
 msgid "Border color"
 msgstr ""
 
-#: includes/Admin/Settings.php:241
+#: includes/Admin/Settings.php:255
 msgid "Hover colors"
 msgstr ""
 
-#: includes/Admin/Settings.php:280
+#: includes/Admin/Settings.php:294
 msgid "Dimensions"
 msgstr ""
 
-#: includes/Admin/Settings.php:286
+#: includes/Admin/Settings.php:300
 msgid "Padding"
 msgstr ""
 
-#: includes/Admin/Settings.php:292
+#: includes/Admin/Settings.php:306
 msgid "Margin"
 msgstr ""
 
-#: includes/Admin/Settings.php:304
+#: includes/Admin/Settings.php:318
 msgid "Size"
 msgstr ""
 
-#: includes/Admin/Settings.php:310
+#: includes/Admin/Settings.php:324
 msgid "Width"
 msgstr ""
 
-#: includes/Admin/Settings.php:316
+#: includes/Admin/Settings.php:330
 msgid "Height"
 msgstr ""
 
-#: includes/Admin/Settings.php:328
+#: includes/Admin/Settings.php:342
 msgid "Additional CSS"
 msgstr ""
 
-#: includes/Admin/Settings.php:334
+#: includes/Admin/Settings.php:348
 msgid "CSS code"
 msgstr ""
 
-#. Name of the plugin
-msgid "WooCommerce Simple Buy Now"
+#: includes/functions.php:11
+msgid "px"
 msgstr ""
 
-#. Description of the plugin
-msgid "Buy your product only one step in the Product Detail page."
+#: includes/functions.php:12
+msgid "em"
 msgstr ""
 
-#. URI of the plugin
-msgid "https://wpismylife.com/"
+#: includes/functions.php:13
+msgid "rem"
 msgstr ""
 
-#. Author of the plugin
-msgid "wpismylife"
-msgstr ""
-
-#. Author URI of the plugin
-msgid "https://wpismylife.com/contact-me/"
+#: includes/Plugin.php:396
+msgid "Security check failed. Please refresh the page and try again."
 msgstr ""
