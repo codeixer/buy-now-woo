@@ -129,6 +129,7 @@ class Plugin {
 				'buy_now_woo',
 				array(
 					'ajax_url' => admin_url( 'admin-ajax.php' ),
+					'nonce'    => wp_create_nonce( 'wsb_buy_now_nonce' ),
 				)
 			);
 		}
@@ -331,11 +332,22 @@ class Plugin {
 	public function button_template( $args ) {
 		global $product;
 
-		$type    = isset( $args['type'] ) ? 'type="' . esc_attr( $args['type'] ) . '"' : '';
-		$classes = implode( ' ', array_map( 'sanitize_html_class', $args['class'] ) );
-		$atts    = isset( $args['attributes'] ) ? $args['attributes'] : '';
+		$type    = isset( $args['type'] ) ? esc_attr( $args['type'] ) : 'submit';
+		$classes = isset( $args['class'] ) && is_array( $args['class'] ) ? implode( ' ', array_map( 'sanitize_html_class', $args['class'] ) ) : '';
+		$atts    = '';
+
+		if ( ! empty( $args['attributes'] ) && is_array( $args['attributes'] ) ) {
+			foreach ( $args['attributes'] as $attr_key => $attr_val ) {
+				$atts .= sprintf( '%s="%s" ', esc_attr( $attr_key ), esc_attr( $attr_val ) );
+			}
+		} elseif ( ! empty( $args['attributes'] ) && is_string( $args['attributes'] ) ) {
+			$atts = $args['attributes'];
+		}
+
+		$button_title = isset( $args['title'] ) ? esc_html( $args['title'] ) : '';
+		$product_id   = is_object( $product ) && method_exists( $product, 'get_id' ) ? $product->get_id() : '';
 		?>
-		<button <?php echo esc_attr( $type ); ?>name="wsb-buy-now" value="<?php echo esc_attr( $product->get_id() ); ?>" class="<?php echo esc_attr( $classes ); ?>" <?php echo $atts; // WPCS: xss ok. ?>><?php echo isset( $args['title'] ) ? esc_html( $args['title'] ) : ''; ?></button>
+		<button type="<?php echo esc_attr( $type ); ?>" name="wsb-buy-now" value="<?php echo esc_attr( $product_id ); ?>" class="<?php echo esc_attr( $classes ); ?>" <?php echo esc_attr( $atts ); ?>><?php echo esc_html( $button_title ); ?></button>
 		<?php
 	}
 
@@ -374,8 +386,18 @@ class Plugin {
 	 * Add product to cart via ajax function.
 	 */
 	public function add_to_cart_ajax() {
-		$product_id = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $_REQUEST['wsb-buy-now'] ) );
+		if ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) {
+			wp_die();
+		}
 
+		$nonce          = isset( $_POST['wsb-nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['wsb-nonce'] ) ) : '';
+		$wsb_product_id = isset( $_POST['wsb-buy-now'] ) ? absint( $_POST['wsb-buy-now'] ) : 0;
+		if ( ! wp_verify_nonce( $nonce, 'wsb_buy_now_nonce' ) ) {
+			wp_die( esc_html__( 'Security check failed. Please refresh the page and try again.', 'buy-now-woo' ) );
+		}
+
+		$product_id = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $wsb_product_id ) );
+		error_log( 'Product ID: ' . print_r( $_POST, true ) );
 		/**
 		 * Fires before add to cart via ajax.
 		 *
@@ -414,7 +436,7 @@ class Plugin {
 			return wp_send_json_success( $results, 200 );
 
 		} catch ( \Exception $e ) {
-			return wp_send_json_error( array( 'message' => $e->getMessage() ), 400 );
+			wp_send_json_error( array( 'message' => esc_html( $e->getMessage() ) ), 400 );
 		}
 	}
 

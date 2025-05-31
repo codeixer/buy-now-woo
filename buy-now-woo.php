@@ -21,37 +21,45 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
+
 add_action(
 	'before_woocommerce_init',
 	function () {
-		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+		if ( class_exists( '\\Automattic\\WooCommerce\\Utilities\\FeaturesUtil' ) ) {
 			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
-		}
-		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
 			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__, true );
 		}
 	}
 );
+
 // Include the loader.
 require_once __DIR__ . '/loader.php';
 
-
 /**
- * And only works with PHP 7.4 or later.
+ * Only works with PHP 7.4 or later.
  */
 if ( version_compare( phpversion(), '7.4', '<' ) ) {
 	/**
-	 * Adds a message for outdate PHP version.
+	 * Adds a message for outdated PHP version.
 	 */
 	function buy_now_woo_php_upgrade_notice() {
-		$message = sprintf( esc_html__( 'WooCommerce Simple Buy Now requires at least PHP version 7.4 to work, you are running version %s. Please contact to your administrator to upgrade PHP version!', 'buy-now-woo' ), phpversion() );
-		printf( '<div class="error"><p>%s</p></div>', $message ); // WPCS: XSS OK.
-
-		deactivate_plugins( array( 'buy_now_woo/buy_now_woo.php' ) );
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+		
+		$message = sprintf(
+			/* translators: %s is the current PHP version */
+			esc_html__( 'WooCommerce Simple Buy Now requires at least PHP version 7.4 to work, you are running version %s. Please contact your administrator to upgrade PHP version!', 'buy-now-woo' ),
+			esc_html( phpversion() )
+		);
+		
+		printf( '<div class="error"><p>%s</p></div>', $message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+		// Deactivate plugin securely.
+		if ( is_plugin_active( plugin_basename( __FILE__ ) ) ) {
+			deactivate_plugins( plugin_basename( __FILE__ ) );
+		}
 	}
-
 	add_action( 'admin_notices', 'buy_now_woo_php_upgrade_notice' );
-
 	return;
 }
 
@@ -68,8 +76,14 @@ define( 'BUY_NOW_WOO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
  */
 function buy_now_woo_admin_notice() {
 	if ( ! class_exists( 'WooCommerce' ) ) {
-		/* translators: 1. URL link. */
-		echo '<div class="error"><p><strong>' . sprintf( esc_html__( 'Buy Now for WooCommerce requires WooCommerce to be installed and active. You can download %s here.', 'buy-now-woo' ), '<a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a>' ) . '</strong></p></div>';
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+		
+		$woo_url = esc_url( 'https://wordpress.org/plugins/woocommerce/' );
+		$woo_link = '<a href="' . $woo_url . '" target="_blank" rel="noopener noreferrer">WooCommerce</a>';
+		// translators: %s is the link to WooCommerce plugin.
+		echo '<div class="error"><p><strong>' . sprintf( esc_html__( 'Buy Now for WooCommerce requires WooCommerce to be installed and active. You can download %s here.', 'buy-now-woo' ), $woo_link ) . '</strong></p></div>'; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
 
@@ -77,7 +91,10 @@ add_action(
 	'plugins_loaded',
 	function () {
 		if ( class_exists( 'WooCommerce' ) ) {
-			$GLOBALS['buy_now_woo'] = Buy_Now_Woo::get_instance();
+			if ( ! class_exists( 'Buy_Now_Woo\\Plugin' ) ) {
+				return;
+			}
+			$GLOBALS['buy_now_woo'] = Buy_Now_Woo\Plugin::get_instance();
 		}
 		add_action( 'admin_notices', 'buy_now_woo_admin_notice', 4 );
 	}

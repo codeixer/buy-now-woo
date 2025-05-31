@@ -27,7 +27,7 @@ class Size_Field {
 		?>
 		<tr valign="top">
 			<th scope="row" class="titledesc">
-				<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?><?php echo $tooltip_html; // WPCS: XSS ok. ?></label>
+				<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?><?php echo $tooltip_html;// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></label>
 			</th>
 			<td class="forminp">
 				<input
@@ -50,7 +50,7 @@ class Size_Field {
 					?>
 				</select>
 
-				<?php echo ( $description ) ? '<span class="description">' . $description . '</span>' : ''; // WPCS: XSS ok. ?>
+				<?php echo ( $description ) ? '<span class="description">' . $description . '</span>' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</td>
 		</tr>
 		<?php

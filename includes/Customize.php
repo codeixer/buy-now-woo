@@ -52,44 +52,33 @@ class Customize {
 	 * @return string
 	 */
 	public function get_custom_css() {
-		ob_start();
+		$css = '';
+
 		if ( $colors = $this->get_color_atts() ) {
-			?>
-			.wsb-button {<?php echo $colors; ?>}
-			<?php
+			$css .= ".wsb-button {{$colors}}\n";
 		}
 
 		if ( $hover_colors = $this->get_hover_color_atts() ) {
-			?>
-			.wsb-button:hover {<?php echo $hover_colors; ?>}
-			<?php
+			$css .= ".wsb-button:hover {{$hover_colors}}\n";
 		}
 
 		if ( $padding = $this->get_padding_atts() ) {
-			?>
-			.wsb-button {<?php echo $padding; ?>}
-			<?php
+			$css .= ".wsb-button {{$padding}}\n";
 		}
 
 		if ( $margin = $this->get_margin_atts() ) {
-			?>
-			.wsb-button {<?php echo $margin; ?>}
-			<?php
+			$css .= ".wsb-button {{$margin}}\n";
 		}
 
 		if ( $size = $this->get_size_atts() ) {
-			?>
-			.wsb-button {<?php echo $size; ?>}
-			<?php
+			$css .= ".wsb-button {{$size}}\n";
 		}
 
-		if ( $this->get_additional_css() ) {
-			echo $this->get_additional_css();
+		if ( $additional_css = $this->get_additional_css() ) {
+			$css .= $additional_css . "\n";
 		}
 
-		$styles = ob_get_clean();
-
-		return $styles;
+		return $css;
 	}
 
 	/**
