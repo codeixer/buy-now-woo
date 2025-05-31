@@ -1,10 +1,9 @@
 === Buy Now for WooCommerce - WooCommerce Buy Now Button free addon ===
-Contributors: wpismylife
+Contributors: im_niloy,wpismylife
 Tags: woocommerce buy now, woo buy now, woocommerce checkout in product page, woocommerce quick buy, buy now button
-Donate link: paypal.me/wpismylife
-Requires at least: 4.9
-Tested up to: 5.4
-Stable tag: 1.0.0
+Requires at least: 5.9
+Tested up to: 6.8
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,6 +79,9 @@ The manual installation method involves downloading my plugin and uploading it t
 5. Order detail page after checkout.
 
 == Changelog ==
+
+= 1.1.0 - 2025-06-01 =
+*
 
 = 1.0.0 - 2020-05-01 =
 * Feature - Add WooCommerce Settings.
