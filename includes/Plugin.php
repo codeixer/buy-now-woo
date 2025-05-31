@@ -433,7 +433,7 @@ class Plugin {
 				)
 			);
 
-			return wp_send_json_success( $results, 200 );
+			 wp_send_json_success( $results, 200 );
 
 		} catch ( \Exception $e ) {
 			wp_send_json_error( array( 'message' => esc_html( $e->getMessage() ) ), 400 );
