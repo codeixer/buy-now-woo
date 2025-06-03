@@ -4,7 +4,10 @@
  *
  * @package Buy_Now_Woo
  */
-
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
 /**
  * First, we need autoload via Composer to make everything works.
  */

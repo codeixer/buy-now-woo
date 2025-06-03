@@ -1,7 +1,10 @@
 <?php
 
 namespace Buy_Now_Woo\Admin;
-
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
 /**
  * Settings
  */

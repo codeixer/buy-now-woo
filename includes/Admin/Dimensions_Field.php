@@ -2,6 +2,10 @@
 
 namespace Buy_Now_Woo\Admin;
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
 /**
  * Settings
  */
@@ -22,12 +26,12 @@ class Dimensions_Field {
 		// Description handling.
 		$field_description = \WC_Admin_Settings::get_field_description( $value );
 		$description       = $field_description['description']; // WPCS: XSS ok.
-		$tooltip_html      = $field_description['tooltip_html']; // WPCS: XSS ok. 
+		$tooltip_html      = $field_description['tooltip_html']; // WPCS: XSS ok.
 		$option_value      = $this->parse_option( \WC_Admin_Settings::get_option( $value['id'], $value['default'] ) );
 		?>
 		<tr valign="top">
 			<th scope="row" class="titledesc">
-				<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?><?php echo $tooltip_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></label>
+				<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?><?php echo wp_kses_post( $tooltip_html ); ?></label>
 			</th>
 			<td class="forminp">
 				<input
@@ -86,7 +90,7 @@ class Dimensions_Field {
 					?>
 				</select>
 
-				<?php echo ( $description ) ? '<span class="description">' . $description . '</span>' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  ?>
+				<?php echo ( $description ) ? '<span class="description">' . $description . '</span>' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 				</br>
 				<span class="description">

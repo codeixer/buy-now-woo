@@ -3,7 +3,10 @@
 namespace Buy_Now_Woo;
 
 use Buy_Now_Woo\Admin\Settings;
-
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
 /**
  * Set up and initialize
  */
@@ -397,7 +400,7 @@ class Plugin {
 		}
 
 		$product_id = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $wsb_product_id ) );
-		error_log( 'Product ID: ' . print_r( $_POST, true ) );
+
 		/**
 		 * Fires before add to cart via ajax.
 		 *
