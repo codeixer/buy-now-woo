@@ -13,6 +13,8 @@ Buy Now Button for WooCommerce allowing customers to add products to the cart an
 
 Buy Now for WooCommerce lets you add a Buy Now button to single product pages, enabling customers to skip the cart and go straight to checkout. The button can be positioned before, after, or in place of the Add to Cart button, and is fully customizable from the WooCommerce settings.
 
+`As of July 5, 2025, this project is maintained by [Codeixer](https://profiles.wordpress.org/im_niloy/).`
+
 **Key Features:**
 * Add a Buy Now button to single product pages
 * Choose button position: before, after, or replace Add to Cart
@@ -51,7 +53,7 @@ The Buy Now button is designed for simple and variable products.
 
 == Changelog ==
 
-= 1.1.0 - 2025-06-01 =
+= 1.1.0 - 2025-07-05 =
 * Maintenance and security improvements
 
 = 1.0.0 - 2020-05-01 =
