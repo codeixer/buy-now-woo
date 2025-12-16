@@ -68,17 +68,31 @@ class Plugin {
 			$this->handle_button_positions();
 
 			add_action( 'wsb_before_add_to_cart', array( $this, 'reset_cart' ), 10 );
-			add_filter( 'woocommerce_is_checkout', array( $this, 'woocommerce_is_checkout' ) );
+			// add_filter( 'woocommerce_is_checkout', array( $this, 'woocommerce_is_checkout' ) );
 			add_shortcode( 'buy_now_woo_button', array( $this, 'add_shortcode_button' ) );
 
 			$this->handle_customize();
 
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 20 );
 		}
+		add_action( 'plugin_action_links_' . BUY_NOW_WOO_BASE_FILE, array( $this, 'plugin_row_meta_links' ) );
 
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'settings_page' ) );
 	}
+	/**
+	 * links in Plugin Meta
+	 *
+	 * @param  [array] $links
+	 * @return void
+	 */
+	public function plugin_row_meta_links( $links ) {
+		$row_meta = array(
+			'settings' => '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=wc_simple_buy_settings' ) . '">Settings</a>',
+			
 
+		);
+		return array_merge( $links, $row_meta );
+	}
 	/**
 	 * Add WC settings.
 	 *
@@ -121,7 +135,7 @@ class Plugin {
 	 */
 	public function enqueue_scripts() {
 		wp_register_style( 'buy-now-woo', BUY_NOW_WOO_PLUGIN_URL . 'assets/css/buy-now-woo.css', array(), BUY_NOW_WOO_VERSION );
-		wp_register_script( 'buy-now-woo', BUY_NOW_WOO_PLUGIN_URL . 'assets/js/buy-now-woo.js', array( 'jquery' ), BUY_NOW_WOO_VERSION, true );
+		wp_register_script( 'buy-now-woo', BUY_NOW_WOO_PLUGIN_URL . 'assets/js/buy-now-woo-min.js', array( 'jquery' ), BUY_NOW_WOO_VERSION, true );
 
 		if ( is_product() ) {
 			wp_enqueue_style( 'buy-now-woo' );
@@ -436,7 +450,7 @@ class Plugin {
 				)
 			);
 
-			 wp_send_json_success( $results );
+			wp_send_json_success( $results );
 
 		} catch ( \Exception $e ) {
 			wp_send_json_error( array( 'message' => esc_html( $e->getMessage() ) ) );

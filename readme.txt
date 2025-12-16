@@ -3,7 +3,7 @@ Contributors: im_niloy, wpismylife
 Tags: buy now, direct checkout, buy now button, woocommerce checkout, woocommerce quick buy
 Requires at least: 5.9
 Tested up to: 6.8
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Buy Now Button for WooCommerce allowing customers to add products to the cart an
 
 Buy Now for WooCommerce lets you add a Buy Now button to single product pages, enabling customers to skip the cart and go straight to checkout. The button can be positioned before, after, or in place of the Add to Cart button, and is fully customizable from the WooCommerce settings.
 
-`As of July 5, 2025, this project is maintained by [Codeixer](https://profiles.wordpress.org/im_niloy/).`
+**As of July 5, 2025, this project is maintained by [Codeixer](https://profiles.wordpress.org/im_niloy/).**
 
 **Key Features:**
 * Add a Buy Now button to single product pages
@@ -52,6 +52,12 @@ The Buy Now button is designed for simple and variable products.
 4. Order details after checkout
 
 == Changelog ==
+
+= 1.1.1 - 2025-12-16 =
+* Added Codeixer SDK for deactivation survey
+* Added Settings link under plugin name for quick nagivation
+* Minify js file
+* Compatibility with WooCommerce 10.x
 
 = 1.1.0 - 2025-07-05 =
 * Maintenance and security improvements

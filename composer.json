@@ -16,5 +16,8 @@
             "Buy_Now_Woo\\": "includes/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "require": {
+        "niloys7/remote-admin-notification-client": "dev-main"
+    }
 }

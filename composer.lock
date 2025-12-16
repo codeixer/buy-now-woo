@@ -4,15 +4,59 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "54c1dd5beabc19260a89cffcda8af983",
-    "packages": [],
+    "content-hash": "58e7d6fa361f4c0738d0201558d3486e",
+    "packages": [
+        {
+            "name": "niloys7/remote-admin-notification-client",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Niloys7/remote-admin-notification-client.git",
+                "reference": "694960070bb4e18ad3b4832d019922bf28714df7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Niloys7/remote-admin-notification-client/zipball/694960070bb4e18ad3b4832d019922bf28714df7",
+                "reference": "694960070bb4e18ad3b4832d019922bf28714df7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "class-remote-notification-client.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Niloy",
+                    "email": "niloys7live@gmail.com"
+                }
+            ],
+            "description": "Admin Notification client fo WordPress Plugins & Theme",
+            "support": {
+                "issues": "https://github.com/Niloys7/remote-admin-notification-client/issues",
+                "source": "https://github.com/Niloys7/remote-admin-notification-client/tree/main"
+            },
+            "time": "2023-04-18T20:32:47+00:00"
+        }
+    ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": {
+        "niloys7/remote-admin-notification-client": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {},
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }

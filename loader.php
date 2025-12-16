@@ -8,10 +8,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
-/**
- * First, we need autoload via Composer to make everything works.
- */
-require_once trailingslashit( __DIR__ ) . 'vendor/autoload.php';
+
 
 /**
  * Then, require the main class.

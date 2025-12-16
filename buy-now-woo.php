@@ -7,12 +7,13 @@
  * Author URI:      https://codeixer.com/
  * Text Domain:     buy-now-woo
  * Domain Path:     /languages
- * Version:         1.1.0
+ * Version:         1.1.1
  * License:         GPL-2.0+
  * License URI:     http://www.gnu.org/licenses/gpl-2.0.txt
  * Tested up to: 6.8
  * WC requires at least: 4.9
- * WC tested up to: 9.8.0
+ * WC tested up to: 10.3
+ * Requires Plugins: woocommerce
  *
  * @package         Woo_Buy_Now
  */
@@ -21,6 +22,10 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
+/**
+ * First, we need autoload via Composer to make everything works.
+ */
+require __DIR__ . '/vendor/autoload.php';
 
 add_action(
 	'before_woocommerce_init',
@@ -34,6 +39,21 @@ add_action(
 
 // Include the loader.
 require_once __DIR__ . '/loader.php';
+require __DIR__ . '/includes/usage-tracking/Client.php';
+
+function cdx_init_tracker_buy_now_woo() {
+
+	$client = new NS7_UT\Client(
+		'Z9ZrI6VuUH8FJZNud9fo',
+		'Buy Now Button for WooCommerce',
+		__FILE__
+	);
+
+	// Active insights
+	$client->insights()->add_plugin_data()->init();
+}
+
+cdx_init_tracker_buy_now_woo();
 
 /**
  * Only works with PHP 7.4 or later.
@@ -70,7 +90,7 @@ if ( defined( 'BUY_NOW_WOO_VERSION' ) ) {
 define( 'BUY_NOW_WOO_VERSION', '1.1.0' );
 define( 'BUY_NOW_WOO_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BUY_NOW_WOO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-
+define( 'BUY_NOW_WOO_BASE_FILE', plugin_basename( __FILE__ ) );
 /**
  * Admin notice: Require WooCommerce.
  */
