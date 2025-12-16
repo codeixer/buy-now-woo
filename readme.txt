@@ -56,6 +56,7 @@ The Buy Now button is designed for simple and variable products.
 = 1.1.1 - 2025-12-16 =
 * Added Codeixer SDK for deactivation survey
 * Added Settings link under plugin name for quick nagivation
+* Fixed: Default Mini cart block not working in single product page.
 * Minify js file
 * Compatibility with WooCommerce 10.x
 
