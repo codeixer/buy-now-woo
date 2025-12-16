@@ -1,0 +1,14 @@
+.*
+.*/
+*.lock
+*.md
+
+.DS_Store
+.vscode
+._*
+.Spotlight-V100
+.Trashes
+.vscode
+
+Thumbs.db
+Desktop.ini

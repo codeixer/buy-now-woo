@@ -4,11 +4,11 @@
  *
  * @package Buy_Now_Woo
  */
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
 
-/**
- * First, we need autoload via Composer to make everything works.
- */
-require_once trailingslashit( __DIR__ ) . 'vendor/autoload.php';
 
 /**
  * Then, require the main class.

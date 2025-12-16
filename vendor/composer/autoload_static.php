@@ -7,17 +7,22 @@ namespace Composer\Autoload;
 class ComposerStaticInitb783bb10af77ac1fd3d7f72b8a3f08a6
 {
     public static $prefixLengthsPsr4 = array (
-        'B' => 
+        'B' =>
         array (
             'Buy_Now_Woo\\' => 12,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Buy_Now_Woo\\' => 
+        'Buy_Now_Woo\\' =>
         array (
             0 => __DIR__ . '/../..' . '/includes',
         ),
+    );
+
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'NS7_RDNC' => __DIR__ . '/..' . '/niloys7/remote-admin-notification-client/class-remote-notification-client.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -25,6 +30,7 @@ class ComposerStaticInitb783bb10af77ac1fd3d7f72b8a3f08a6
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitb783bb10af77ac1fd3d7f72b8a3f08a6::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitb783bb10af77ac1fd3d7f72b8a3f08a6::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb783bb10af77ac1fd3d7f72b8a3f08a6::$classMap;
 
         }, null, ClassLoader::class);
     }

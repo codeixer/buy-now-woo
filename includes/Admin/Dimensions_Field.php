@@ -2,6 +2,10 @@
 
 namespace Buy_Now_Woo\Admin;
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
 /**
  * Settings
  */
@@ -10,7 +14,7 @@ class Dimensions_Field {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_action( 'woocommerce_admin_field_wsb_dimensions', [ $this, 'output' ] );
+		add_action( 'woocommerce_admin_field_wsb_dimensions', array( $this, 'output' ) );
 	}
 
 	/**
@@ -21,13 +25,13 @@ class Dimensions_Field {
 	public function output( $value ) {
 		// Description handling.
 		$field_description = \WC_Admin_Settings::get_field_description( $value );
-		$description       = $field_description['description'];
-		$tooltip_html      = $field_description['tooltip_html'];
+		$description       = $field_description['description']; // WPCS: XSS ok.
+		$tooltip_html      = $field_description['tooltip_html']; // WPCS: XSS ok.
 		$option_value      = $this->parse_option( \WC_Admin_Settings::get_option( $value['id'], $value['default'] ) );
 		?>
 		<tr valign="top">
 			<th scope="row" class="titledesc">
-				<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?><?php echo $tooltip_html; // WPCS: XSS ok. ?></label>
+				<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?><?php echo wp_kses_post( $tooltip_html ); ?></label>
 			</th>
 			<td class="forminp">
 				<input
@@ -86,7 +90,7 @@ class Dimensions_Field {
 					?>
 				</select>
 
-				<?php echo ( $description ) ? '<span class="description">' . $description . '</span>' : ''; // WPCS: XSS ok. ?>
+				<?php echo ( $description ) ? '<span class="description">' . $description . '</span>' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 				</br>
 				<span class="description">
@@ -108,13 +112,16 @@ class Dimensions_Field {
 	 * @return array Nicely formatted array with number and unit values.
 	 */
 	public function parse_option( $raw_value ) {
-		$value = wp_parse_args( (array) $raw_value, [
-			'top'    => '',
-			'right'  => '',
-			'bottom' => '',
-			'left'   => '',
-			'unit'   => 'px',
-		] );
+		$value = wp_parse_args(
+			(array) $raw_value,
+			array(
+				'top'    => '',
+				'right'  => '',
+				'bottom' => '',
+				'left'   => '',
+				'unit'   => 'px',
+			)
+		);
 
 		$value['top']    = isset( $value['top'] ) ? $value['top'] : '';
 		$value['right']  = isset( $value['right'] ) ? $value['right'] : '';

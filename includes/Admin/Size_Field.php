@@ -2,6 +2,10 @@
 
 namespace Buy_Now_Woo\Admin;
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
 /**
  * Settings
  */
@@ -10,7 +14,7 @@ class Size_Field {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_action( 'woocommerce_admin_field_wsb_size', [ $this, 'output' ] );
+		add_action( 'woocommerce_admin_field_wsb_size', array( $this, 'output' ) );
 	}
 
 	/**
@@ -27,7 +31,7 @@ class Size_Field {
 		?>
 		<tr valign="top">
 			<th scope="row" class="titledesc">
-				<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?><?php echo $tooltip_html; // WPCS: XSS ok. ?></label>
+				<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?><?php echo wp_kses_post( $tooltip_html ); ?></label>
 			</th>
 			<td class="forminp">
 				<input
@@ -50,7 +54,7 @@ class Size_Field {
 					?>
 				</select>
 
-				<?php echo ( $description ) ? '<span class="description">' . $description . '</span>' : ''; // WPCS: XSS ok. ?>
+				<?php echo ( $description ) ? '<span class="description">' . $description . '</span>' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</td>
 		</tr>
 		<?php
@@ -64,10 +68,13 @@ class Size_Field {
 	 * @return array Nicely formatted array with number and unit values.
 	 */
 	public function parse_option( $raw_value ) {
-		$value = wp_parse_args( (array) $raw_value, [
-			'size' => '',
-			'unit' => 'px',
-		] );
+		$value = wp_parse_args(
+			(array) $raw_value,
+			array(
+				'size' => '',
+				'unit' => 'px',
+			)
+		);
 
 		$value['size'] = isset( $value['size'] ) ? $value['size'] : '';
 

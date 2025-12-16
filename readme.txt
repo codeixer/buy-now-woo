@@ -1,86 +1,68 @@
-=== Buy Now for WooCommerce - WooCommerce Buy Now Button free addon ===
-Contributors: wpismylife
-Tags: woocommerce buy now, woo buy now, woocommerce checkout in product page, woocommerce quick buy, buy now button
-Donate link: paypal.me/wpismylife
-Requires at least: 4.9
-Tested up to: 5.4
-Stable tag: 1.0.0
+=== Buy Now Button for WooCommerce ===
+Contributors: im_niloy, wpismylife
+Tags: buy now, direct checkout, buy now button, woocommerce checkout, woocommerce quick buy
+Requires at least: 5.9
+Tested up to: 6.8
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Buy Now for WooCommerce helps you to add to cart and checkout only one step in the single product page.
-A Buy Now button will be add to single product page with full customizations, helps you buy the product without cart.
-
+Buy Now Button for WooCommerce allowing customers to add products to the cart and proceed to checkout in one step.
 
 == Description ==
 
-Buy Now for WooCommerce helps you to add to cart and checkout only one step in the single product page.
-You only need to create one button `Buy Now` in `WooCommerce > Settings > Buy Now` at before / after or replace Add to cart button. A pop-up will be displayed with the content of the checkout page.
-Also, you can use [Checkout Field Editor](https://wordpress.org/plugins/woo-checkout-field-editor-pro/) to clean fields in checkout form (pop-up).
+Buy Now for WooCommerce lets you add a Buy Now button to single product pages, enabling customers to skip the cart and go straight to checkout. The button can be positioned before, after, or in place of the Add to Cart button, and is fully customizable from the WooCommerce settings.
 
-= More Information =
-* I would be happy if you leave a review :) [Review](https://wordpress.org/support/plugin/buy-now-woo/reviews/). It's free!
+**As of July 5, 2025, this project is maintained by [Codeixer](https://profiles.wordpress.org/im_niloy/).**
 
-= Settings =
-Go to `Dashboard > WooCommerce > Settings > Buy Now` tab
-General:
+**Key Features:**
+* Add a Buy Now button to single product pages
+* Choose button position: before, after, or replace Add to Cart
+* Option to show checkout in a popup or redirect to checkout page
+* Customize button text, style, and colors
+* Optionally reset cart before Buy Now
+* Optionally hide quantity input
+* Developer-friendly shortcode: `[buy_now_woo_button]`
 
-* Enable Buy Now button: Activate Buy Now feature
-* Redirect: Use a *Pop-up* or *Redirect to the checkout page (skip the cart page)*
-* Buy Now Button Position: Set a position for Buy Now button
-* Buy Now Button Title: the title default is *Buy Now*
-* Reset Cart before Buy Now: Apcept reset cart before Buy Now
-* Remove Quantity input: Hide quantity input by CSS code
-
-Customize:
-
-* Button style: Enable customizer settings if you choose *Customize*
-* Normal colors
-* Hover colors
-* Dimensions
-* Size
-* Additional CSS
-
-= Shortcode for developer =
-`[buy_now_woo_button]`
-Arguments: *title* - *class*
-If you are a developer, you can use this shortcode at `content-single-product` template or its child. It should be written on the inside of the form cart.
-For example,
+**Shortcode Usage:**
 `[buy_now_woo_button title="Buy Now" class="wsb-button"]`
 
 == Installation ==
 
-= Minimum Requirements =
+1. Upload the plugin files to the `/wp-content/plugins/buy-now-woo/` directory, or install the plugin through the WordPress plugins screen directly.
+2. Activate the plugin through the 'Plugins' screen in WordPress.
+3. Go to WooCommerce > Settings > Buy Now to configure the plugin.
 
-* PHP version 5.4 or greater (PHP 5.6 or greater is recommended)
-* MySQL version 5.0 or greater (MySQL 5.6 or greater is recommended)
-* WooCommerce 3.0
-* WordPress 4.6
+== Frequently Asked Questions ==
 
-Visit the [Buy Now for WooCommerce repository](https://github.com/wpismylife/buy-now-woo/) for a detailed list of server requirements.
+= Where do I find the settings? =
+Go to WooCommerce > Settings > Buy Now tab.
 
-= Automatic installation =
+= Can I customize the Buy Now button? =
+Yes, you can change the button text, style, and position from the settings page.
 
-Automatic installation is the easiest option as WordPress handles the file transfers itself and you don’t need to leave your web browser. To do an automatic install of Buy Now for WooCommerce, log in
-to your WordPress dashboard, navigate to the Plugins menu and click Add New.
-
-In the search field type “Buy Now for WooCommerce” and click Search Plugins. Most importantly of course, you can install it by simply clicking “Install Now”.
-
-= Manual installation =
-
-The manual installation method involves downloading my plugin and uploading it to your webserver via your favourite FTP application. The WordPress codex contains [instructions on how to do this here](https://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation).
-[Buy Now for WooCommerce repository](https://github.com/wpismylife/buy-now-woo/).
+= Does it work with all product types? =
+The Buy Now button is designed for simple and variable products.
 
 == Screenshots ==
 
-1. WP Admin > WooCommerce > Settings > Buy Now.
-2. Single Product page with Buy Now button.
-3. Pop-up 1.
-4. Pop-up 2.
-5. Order detail page after checkout.
+1. WooCommerce > Settings > Buy Now tab
+2. Single Product page with Buy Now button
+3. Checkout popup
+4. Order details after checkout
 
 == Changelog ==
 
+= 1.1.1 - 2025-12-16 =
+* Added Codeixer SDK for deactivation survey
+* Added Settings link under plugin name for quick nagivation
+* Fixed: Default Mini cart block not working in single product page.
+* Minify js file
+* Compatibility with WooCommerce 10.x
+
+= 1.1.0 - 2025-07-05 =
+* Maintenance and security improvements
+
 = 1.0.0 - 2020-05-01 =
-* Feature - Add WooCommerce Settings.
+* Initial release
 

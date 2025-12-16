@@ -1,9 +1,14 @@
 {
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "58e7d6fa361f4c0738d0201558d3486e",
     "packages": [
         {
             "name": "niloys7/remote-admin-notification-client",
             "version": "dev-main",
-            "version_normalized": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Niloys7/remote-admin-notification-client.git",
@@ -18,10 +23,8 @@
             "require": {
                 "php": ">=7.4"
             },
-            "time": "2023-04-18T20:32:47+00:00",
             "default-branch": true,
             "type": "library",
-            "installation-source": "dist",
             "autoload": {
                 "classmap": [
                     "class-remote-notification-client.php"
@@ -42,9 +45,18 @@
                 "issues": "https://github.com/Niloys7/remote-admin-notification-client/issues",
                 "source": "https://github.com/Niloys7/remote-admin-notification-client/tree/main"
             },
-            "install-path": "../niloys7/remote-admin-notification-client"
+            "time": "2023-04-18T20:32:47+00:00"
         }
     ],
-    "dev": true,
-    "dev-package-names": []
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "niloys7/remote-admin-notification-client": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }
