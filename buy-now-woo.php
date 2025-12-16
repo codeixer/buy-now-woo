@@ -87,7 +87,7 @@ if ( defined( 'BUY_NOW_WOO_VERSION' ) ) {
 	return;
 }
 
-define( 'BUY_NOW_WOO_VERSION', '1.1.0' );
+define( 'BUY_NOW_WOO_VERSION', '1.1.1' );
 define( 'BUY_NOW_WOO_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BUY_NOW_WOO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'BUY_NOW_WOO_BASE_FILE', plugin_basename( __FILE__ ) );
