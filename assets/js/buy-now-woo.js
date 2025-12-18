@@ -52,7 +52,10 @@ jQuery(document).ready(function ($) {
 
           $(document.body).trigger('wsb_checkout_template_added');
          
-          $('.wsb-modal').modal();
+          $('.wsb-modal').modal({
+            fadeDuration: 250,
+            fadeDelay: 1.5
+          });
        
         }
       },
