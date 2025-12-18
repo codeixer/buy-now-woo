@@ -20,3 +20,6 @@ function wsb_get_css_units() {
 
 	return is_array( $units ) && ! empty( $units ) ? $units : array();
 }
+function cdx_is_catalog() {
+	return is_product_taxonomy() || is_shop() || is_filtered();
+}

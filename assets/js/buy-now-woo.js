@@ -51,16 +51,15 @@ jQuery(document).ready(function ($) {
           address_i18n();
 
           $(document.body).trigger('wsb_checkout_template_added');
-          $('.wsb-modal').addClass('is-visible');
+         
+          $('.wsb-modal').modal();
+       
         }
       },
     });
   });
 
-  $('.wsb-modal-toggle').on('click', function (e) {
-    e.preventDefault();
-    $('.wsb-modal').removeClass('is-visible');
-  });
+  
 
   // Handler variation products.
   $('.variations_form').on('hide_variation', function (e) {

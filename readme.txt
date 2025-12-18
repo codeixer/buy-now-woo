@@ -3,7 +3,7 @@ Contributors: im_niloy, wpismylife
 Tags: buy now, direct checkout, buy now button, woocommerce checkout, woocommerce quick buy
 Requires at least: 5.9
 Tested up to: 6.8
-Stable tag: 1.1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,11 @@ The Buy Now button is designed for simple and variable products.
 4. Order details after checkout
 
 == Changelog ==
+
+= 1.2 - 2025-12-18 =
+* Added: Button option for catalog pages.
+* Added: Replace popup js with 3rd party jquery for better UX.
+* Improve functions for better output.
 
 = 1.1.1 - 2025-12-16 =
 * Added Codeixer SDK for deactivation survey
