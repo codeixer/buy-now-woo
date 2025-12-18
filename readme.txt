@@ -46,10 +46,8 @@ The Buy Now button is designed for simple and variable products.
 
 == Screenshots ==
 
-1. WooCommerce > Settings > Buy Now tab
+1. Shop Catalog page with Buy Now button
 2. Single Product page with Buy Now button
-3. Checkout popup
-4. Order details after checkout
 
 == Changelog ==
 
