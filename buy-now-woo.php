@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name:     Buy Now Button for WooCommerce
+ * Plugin Name:     Quick Buy Now Button for WooCommerce
  * Plugin URI:
- * Description:     Buy your product only one step in the Product Detail page.
+ * Description:     Buy your product only one step in the Product Detail page & shop catalog.
  * Author:          Codeixer
  * Author URI:      https://codeixer.com/
  * Text Domain:     buy-now-woo
  * Domain Path:     /languages
- * Version:         1.1.1
+ * Version:         1.1.2
  * License:         GPL-2.0+
  * License URI:     http://www.gnu.org/licenses/gpl-2.0.txt
  * Tested up to: 6.8
@@ -86,8 +86,7 @@ if ( version_compare( phpversion(), '7.4', '<' ) ) {
 if ( defined( 'BUY_NOW_WOO_VERSION' ) ) {
 	return;
 }
-
-define( 'BUY_NOW_WOO_VERSION', '1.1.1' );
+define( 'BUY_NOW_WOO_VERSION', get_file_data( __FILE__, array( 'Version' => 'Version' ) )['Version'] );
 define( 'BUY_NOW_WOO_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BUY_NOW_WOO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'BUY_NOW_WOO_BASE_FILE', plugin_basename( __FILE__ ) );

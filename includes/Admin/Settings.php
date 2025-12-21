@@ -1,6 +1,7 @@
 <?php
 
 namespace Buy_Now_Woo\Admin;
+
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
@@ -149,6 +150,24 @@ class Settings extends \WC_Settings_Page {
 			'class'    => 'chosen_select',
 			'default'  => 'before',
 			'options'  => $this->get_positions(),
+		);
+		$settings[] = array(
+			'name'     => esc_html__( 'Button Position (Catalog)', 'buy-now-woo' ),
+			'desc_tip' => esc_html__(
+				'Where the button need to be added in catalog page .. before / after / replace',
+				'buy-now-woo'
+			),
+			'id'       => 'buy_now_woo_single_catelog_position',
+			'type'     => 'select',
+			'class'    => 'chosen_select',
+			'default'  => 'after',
+			'options'  => array(
+				'none'  => esc_html__( 'None', 'buy-now-woo' ),
+				'before'  => esc_html__( 'Before Add To Cart Button', 'buy-now-woo' ),
+				'after'   => esc_html__( 'After Add To Cart Button', 'buy-now-woo' ),
+				'replace' => esc_html__( 'Replace Add To Cart Button', 'buy-now-woo' ),
+
+			),
 		);
 
 		$settings[] = array(
