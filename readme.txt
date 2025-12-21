@@ -1,9 +1,9 @@
-=== Buy Now Button for WooCommerce ===
+=== Quick Buy Now Button for WooCommerce ===
 Contributors: im_niloy, wpismylife
 Tags: buy now, direct checkout, buy now button, woocommerce checkout, woocommerce quick buy
 Requires at least: 5.9
 Tested up to: 6.8
-Stable tag: 1.2
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,12 +11,12 @@ Buy Now Button for WooCommerce allowing customers to add products to the cart an
 
 == Description ==
 
-Buy Now for WooCommerce lets you add a Buy Now button to single product pages, enabling customers to skip the cart and go straight to checkout. The button can be positioned before, after, or in place of the Add to Cart button, and is fully customizable from the WooCommerce settings.
+Buy Now for WooCommerce lets you add a Buy Now button to single product & Shop catalog pages, enabling customers to skip the cart and go straight to checkout. The button can be positioned before, after, or in place of the Add to Cart button, and is fully customizable from the WooCommerce settings.
 
 **As of July 5, 2025, this project is maintained by [Codeixer](https://profiles.wordpress.org/im_niloy/).**
 
 **Key Features:**
-* Add a Buy Now button to single product pages
+* Add a Buy Now button to single product pages & shop catalog
 * Choose button position: before, after, or replace Add to Cart
 * Option to show checkout in a popup or redirect to checkout page
 * Customize button text, style, and colors
@@ -51,7 +51,7 @@ The Buy Now button is designed for simple and variable products.
 
 == Changelog ==
 
-= 1.2 - 2025-12-18 =
+= 1.1.2 - 2025-12-18 =
 * Added: Button option for catalog pages.
 * Added: Replace popup js with 3rd party jquery for better UX.
 * Improve functions for better output.
