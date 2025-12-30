@@ -7,10 +7,10 @@
  * Author URI:      https://codeixer.com/
  * Text Domain:     buy-now-woo
  * Domain Path:     /languages
- * Version:         1.1.2
+ * Version:         1.1.3
  * License:         GPL-2.0+
  * License URI:     http://www.gnu.org/licenses/gpl-2.0.txt
- * Tested up to: 6.8
+ * Tested up to: 6.9
  * WC requires at least: 4.9
  * WC tested up to: 10.3
  * Requires Plugins: woocommerce
@@ -66,13 +66,13 @@ if ( version_compare( phpversion(), '7.4', '<' ) ) {
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
-		
+
 		$message = sprintf(
 			/* translators: %s is the current PHP version */
 			esc_html__( 'WooCommerce Simple Buy Now requires at least PHP version 7.4 to work, you are running version %s. Please contact your administrator to upgrade PHP version!', 'buy-now-woo' ),
 			esc_html( phpversion() )
 		);
-		
+
 		printf( '<div class="error"><p>%s</p></div>', $message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 		// Deactivate plugin securely.
 		if ( is_plugin_active( plugin_basename( __FILE__ ) ) ) {
@@ -87,9 +87,21 @@ if ( defined( 'BUY_NOW_WOO_VERSION' ) ) {
 	return;
 }
 define( 'BUY_NOW_WOO_VERSION', get_file_data( __FILE__, array( 'Version' => 'Version' ) )['Version'] );
+define( 'BUY_NOW_DEV_MODE', false );
 define( 'BUY_NOW_WOO_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BUY_NOW_WOO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'BUY_NOW_WOO_BASE_FILE', plugin_basename( __FILE__ ) );
+/**
+ * Admin notice: Dev mode is enabled. make sure turn this off before release.
+ */
+if ( BUY_NOW_DEV_MODE === true ) {
+	add_action( 'admin_notices', 'buy_now_woo_dev_mode_notice' );
+	function buy_now_woo_dev_mode_notice() {
+		$plugin_name = 'Quick Buy Now Button for WooCommerce';
+		printf( '<div class="error"><p>%s</p></div>', esc_html__( 'Dev mode is enabled. make sure turn this off before release. Plugin Name: ' . $plugin_name . ' Version: ' . BUY_NOW_WOO_VERSION, 'buy-now-woo' ) );
+	}
+}
+
 /**
  * Admin notice: Require WooCommerce.
  */
@@ -98,8 +110,8 @@ function buy_now_woo_admin_notice() {
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
-		
-		$woo_url = esc_url( 'https://wordpress.org/plugins/woocommerce/' );
+
+		$woo_url  = esc_url( 'https://wordpress.org/plugins/woocommerce/' );
 		$woo_link = '<a href="' . $woo_url . '" target="_blank" rel="noopener noreferrer">WooCommerce</a>';
 		// translators: %s is the link to WooCommerce plugin.
 		echo '<div class="error"><p><strong>' . sprintf( esc_html__( 'Buy Now for WooCommerce requires WooCommerce to be installed and active. You can download %s here.', 'buy-now-woo' ), $woo_link ) . '</strong></p></div>'; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

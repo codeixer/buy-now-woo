@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Then, require the main class.
  */
 require_once trailingslashit( __DIR__ ) . 'includes/functions.php';
+require_once trailingslashit( __DIR__ ) . 'includes/class-plugin-suggest.php';
 require_once trailingslashit( __DIR__ ) . 'includes/Plugin.php';
 
 /**
