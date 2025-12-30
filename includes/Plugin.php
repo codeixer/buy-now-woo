@@ -77,9 +77,32 @@ class Plugin {
 
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 20 );
 		}
-		add_action( 'plugin_action_links_' . BUY_NOW_WOO_BASE_FILE, array( $this, 'plugin_row_meta_links' ) );
+		add_action( 'plugin_action_links_' . BUY_NOW_WOO_BASE_FILE, array( $this, 'plugin_row_action_links' ) );
+		add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta_links' ), 999, 2 );
 
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'settings_page' ) );
+	}
+	/**
+	 * Add links to plugin's description in plugins table
+	 *
+	 * @param  array  $links Initial list of links.
+	 * @param  string $file  Basename of current plugin.
+	 * @return array
+	 */
+	public function plugin_row_meta_links( $links, $file ) {
+		if ( BUY_NOW_WOO_BASE_FILE !== $file ) {
+			return $links;
+		}
+
+		$cidw_doc     = '<a target="_blank" href="' .  'https://www.codeixer.com/docs/buy-now-button-for-woocommerce/' . '" title="' . __( 'Docs & FAQs', 'buy-now-woo' ) . '">' . __( 'Docs', 'buy-now-woo' ) . '</a>';
+		$cidw_support = '<a style="color:#583fad;font-weight: 600;" target="_blank" href="https://codeixer.com/contact-us/" title="' . __( 'Get help', 'buy-now-woo' ) . '">' . __( 'Support', 'buy-now-woo' ) . '</a>';
+
+		$cidw_review = '<a target="_blank" title="Click here to rate and review this plugin on WordPress.org" href="https://wordpress.org/support/plugin/buy-now-woo/reviews/?filter=5"> Rate this plugin » </a>';
+
+		$links[] = $cidw_doc;
+		$links[] = $cidw_support;
+		$links[] = $cidw_review;
+		return $links;
 	}
 	/**
 	 * links in Plugin Meta
@@ -87,7 +110,7 @@ class Plugin {
 	 * @param  [array] $links
 	 * @return void
 	 */
-	public function plugin_row_meta_links( $links ) {
+	public function plugin_row_action_links( $links ) {
 		$row_meta = array(
 			'settings' => '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=wc_simple_buy_settings' ) . '">Settings</a>',
 
@@ -134,7 +157,7 @@ class Plugin {
 			return $add_to_cart_html;
 		}
 
-		$button_position = get_option( 'buy_now_woo_single_catelog_position', 'none' );
+		$button_position = get_option( 'buy_now_woo_single_catelog_position', 'after' );
 
 		if ( 'before' === $button_position ) {
 			$before = $this->get_button_html();
@@ -163,11 +186,12 @@ class Plugin {
 	 * Enqueue scripts.
 	 */
 	public function enqueue_scripts() {
+		$js_file = ( BUY_NOW_DEV_MODE === true ) ? 'buy-now-woo.js' : 'buy-now-woo-min.js';
 		wp_register_style( 'buy-now-woo-poppup', BUY_NOW_WOO_PLUGIN_URL . 'assets/css/jquery.modal.min.css', array(), BUY_NOW_WOO_VERSION );
 		wp_register_style( 'buy-now-woo', BUY_NOW_WOO_PLUGIN_URL . 'assets/css/buy-now-woo.css', array(), BUY_NOW_WOO_VERSION );
 		wp_register_script( 'buy-now-woo-poppup', BUY_NOW_WOO_PLUGIN_URL . 'assets/js/jquery.modal.min.js', array( 'jquery' ), BUY_NOW_WOO_VERSION, true );
-		wp_register_script( 'buy-now-woo', BUY_NOW_WOO_PLUGIN_URL . 'assets/js/buy-now-woo.js', array( 'jquery' ), BUY_NOW_WOO_VERSION, true );
-		$button_position = get_option( 'buy_now_woo_single_catelog_position', 'none' );
+		wp_register_script( 'buy-now-woo', BUY_NOW_WOO_PLUGIN_URL . 'assets/js/' . $js_file, array( 'jquery' ), BUY_NOW_WOO_VERSION, true );
+		$button_position = get_option( 'buy_now_woo_single_catelog_position', 'after' );
 
 		if ( is_product() || ( cdx_is_catalog() && 'none' != $button_position ) ) {
 
@@ -421,7 +445,7 @@ class Plugin {
 	 * Add checkout template.
 	 */
 	public function add_checkout_template() {
-		$button_position = get_option( 'buy_now_woo_single_catelog_position', 'none' );
+		$button_position = get_option( 'buy_now_woo_single_catelog_position', 'after' );
 		if ( is_product() || ( cdx_is_catalog() && 'none' != $button_position ) ) {
 			?>
 			<div class="modal wsb-modal wsb-modal-content" data-modal>
@@ -480,11 +504,10 @@ class Plugin {
 			$results = apply_filters(
 				'wsb_checkout_template',
 				array(
-					'element'      => '.wsb-modal-content',
 					'redirect'     => $this->is_redirect(),
 					'checkout_url' => esc_url( wc_get_checkout_url() ),
 					'template'     => do_shortcode( '[woocommerce_checkout]' ),
-					
+
 				)
 			);
 

@@ -15,7 +15,7 @@ jQuery(document).ready(function ($) {
     data['wsb-buy-now'] = $el.val();
     data['wsb-nonce'] = buy_now_woo.nonce;
     data['action'] = 'wsb_add_to_cart_ajax';
-    console.log(data);
+    
     
     $.ajax({
       url: buy_now_woo.ajax_url,
@@ -26,20 +26,14 @@ jQuery(document).ready(function ($) {
       },
       success: function (results) {
         $el.removeClass('wsb-loading');
-
-        var element = results.data.element,
-          template = results.data.template,
+       
+        
+        var template = results.data.template,
           redirect = results.data.redirect,
-          checkout_url = results.data.checkout_url,
-          method = results.data.method;
-
-        if ('append' == method) {
-          $(element).append(template);
-        } else if ('prepend' == method) {
-          $(element).prepend(template);
-        } else {
-          $(element).html(template);
-        }
+          checkout_url = results.data.checkout_url;
+       
+      //  console.log(results.data);
+        $('.wsb-modal-content').html(template);
 
         if (redirect) {
           // Redirect to the checkout page.

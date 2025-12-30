@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'codeixer/buy-now-woo',
-        'pretty_version' => '1.1.x-dev',
-        'version' => '1.1.9999999.9999999-dev',
-        'reference' => '8cd144ad1d2f89b3e552a52051c532e8fa097dc0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'f326a7f94ef212e7ee6eef19bc3ba316a17c8bff',
         'type' => 'woocommerce-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'codeixer/buy-now-woo' => array(
-            'pretty_version' => '1.1.x-dev',
-            'version' => '1.1.9999999.9999999-dev',
-            'reference' => '8cd144ad1d2f89b3e552a52051c532e8fa097dc0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'f326a7f94ef212e7ee6eef19bc3ba316a17c8bff',
             'type' => 'woocommerce-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
