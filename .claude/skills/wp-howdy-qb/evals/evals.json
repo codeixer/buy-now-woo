@@ -1,0 +1,40 @@
+{
+  "skill_name": "wp-howdy-qb",
+  "evals": [
+    {
+      "id": 0,
+      "name": "create-custom-table",
+      "prompt": "Create a custom 'products' table with Howdy QB with columns: id (auto-increment primary key), name (VARCHAR 200, required), price (DECIMAL 10,2), status (ENUM draft/published), created_at (timestamp with CURRENT_TIMESTAMP).",
+      "expected_output": "Use DB::create('products')->column('id')->bigInt()->unsigned()->autoIncrement()->primary() chain. Column 'name' uses string(200)->required(). 'price' uses decimal(10,2)->default(0.00). 'status' uses enum(['draft','published'])->default('draft'). 'created_at' uses timestamp('now'). Ends with ->execute(). No prefix in table name.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "select-with-joins-and-where",
+      "prompt": "Query orders with user names where status is completed, ordered by total descending, with a limit of 10.",
+      "expected_output": "Use DB::select('o.id', 'o.total', 'u.name')->from('orders o')->join('users u', 'o.user_id', 'u.id')->where('o.status', '=', 'completed')->orderBy('o.total', 'DESC')->limit(10)->get(). Returns array of assoc arrays.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "pagination-with-offset",
+      "prompt": "Query the second page of submissions with 20 per page and a status filter.",
+      "expected_output": "Two queries: a COUNT query with DB::select()->from('submissions')->count('id', 'total')->where('status', '=', 'active')->get() for pagination metadata, then a data query with limit(20)->offset(20)->orderBy('created_at', 'DESC')->get(). Where clause applied to both.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "batch-insert-multiple-rows",
+      "prompt": "Insert three new orders into the orders table at once with Howdy QB.",
+      "expected_output": "DB::insert('orders', [['user_id' => 1, 'total' => 99.99], ['user_id' => 2, 'total' => 49.99], ['user_id' => 3, 'total' => 25.00]])->execute(). Multi-row array of assoc arrays. Prepared statement values.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "alter-table-add-column",
+      "prompt": "Add a 'discount_price' DECIMAL(10,2) nullable column to the products table.",
+      "expected_output": "DB::alter('products')->add('discount_price')->decimal(10, 2)->nullable()->execute(). Uses fluent ALTER API. Idempotent — checks column existence.",
+      "files": []
+    }
+  ]
+}
