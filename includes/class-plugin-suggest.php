@@ -13,7 +13,7 @@ if ( ! class_exists( 'cdx_wpgs_suggest_plugin' ) ) {
 		// add our plugins to recommended list
 		static function plugins_api_result( $res, $action, $args ) {
 			remove_filter( 'plugins_api_result', array( __CLASS__, 'plugins_api_result' ), 10, 1 );
-			$res = self::add_plugin_favs( array( 'deposits-for-woocommerce', 'woo-product-gallery-slider' ), $res );
+			$res = self::add_plugin_favs( array( 'deposits-for-woocommerce', 'woo-product-gallery-slider','precart' ), $res );
 
 			return $res;
 		} // plugins_api_result

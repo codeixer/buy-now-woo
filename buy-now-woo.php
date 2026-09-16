@@ -1,18 +1,18 @@
 <?php
 /**
- * Plugin Name:     Quick Buy Now Button for WooCommerce
+ * Plugin Name:     Buy Now Button for WooCommerce
  * Plugin URI:
  * Description:     Buy your product only one step in the Product Detail page & shop catalog.
  * Author:          Codeixer
  * Author URI:      https://codeixer.com/
  * Text Domain:     buy-now-woo
  * Domain Path:     /languages
- * Version:         1.1.3
+ * Version:         1.1.4
  * License:         GPL-2.0+
  * License URI:     http://www.gnu.org/licenses/gpl-2.0.txt
- * Tested up to: 6.9
+ * Tested up to: 7.1
  * WC requires at least: 4.9
- * WC tested up to: 10.3
+ * WC tested up to: 11.1
  * Requires Plugins: woocommerce
  *
  * @package         Woo_Buy_Now
@@ -97,7 +97,7 @@ define( 'BUY_NOW_WOO_BASE_FILE', plugin_basename( __FILE__ ) );
 if ( BUY_NOW_DEV_MODE === true ) {
 	add_action( 'admin_notices', 'buy_now_woo_dev_mode_notice' );
 	function buy_now_woo_dev_mode_notice() {
-		$plugin_name = 'Quick Buy Now Button for WooCommerce';
+		$plugin_name = 'Buy Now Button for WooCommerce';
 		printf( '<div class="error"><p>%s</p></div>', esc_html__( 'Dev mode is enabled. make sure turn this off before release. Plugin Name: ' . $plugin_name . ' Version: ' . BUY_NOW_WOO_VERSION, 'buy-now-woo' ) );
 	}
 }
