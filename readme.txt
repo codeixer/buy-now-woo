@@ -1,4 +1,4 @@
-=== Quick Buy Now Button for WooCommerce ===
+=== Buy Now Button for WooCommerce ===
 Contributors: im_niloy, wpismylife
 Tags: buy now, direct checkout, buy now button, woocommerce checkout, woocommerce quick buy
 Requires at least: 5.9
